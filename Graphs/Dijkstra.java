@@ -5,8 +5,11 @@ class Solution {
         Map<Integer,List<Pair<Integer,Integer>>> map = new HashMap<>();
         //building graph
         for(int[] time : times){
+            //get source
             int u = time[0]-1;
+            //get destination
             int v = time[1]-1;
+            //get weight
             int w = time[2];
             map.putIfAbsent(u, new ArrayList<>());
             map.get(u).add(new Pair(v,w));
@@ -19,7 +22,7 @@ class Solution {
         Queue<Pair<Integer,Integer>> minHeap = new PriorityQueue<Pair<Integer,Integer>>(Comparator.comparing(Pair::getKey));
         minHeap.add(new Pair(0,k-1));//weight , node
         minTimes[k-1]=0;
-
+        //dijkstra algorithm
         while(!minHeap.isEmpty()){
             Pair<Integer,Integer> current = minHeap.remove();
             int currWeight = current.getKey();
